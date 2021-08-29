@@ -1,5 +1,6 @@
 import { Recipe, Ingredient, FoodCategory, Unit } from "./types";
 import * as recipes from "./recipes";
+import { useState } from "react";
 
 /**
  * For each element in the recipe list
@@ -44,7 +45,7 @@ function prettyFoodName(name: string) {
         .map((s) => s.toLowerCase())
         .join(" ");
 
-    return `${transformed.charAt(0).toUpperCase()}${transformed.slice(1)}`;
+    return `${transformed}`;
 }
 
 function formatOutput(ingredients: Ingredient[]) {
@@ -71,18 +72,42 @@ function formatOutput(ingredients: Ingredient[]) {
 }
 
 function App() {
-    const list = createShoppingList([
-        recipes.apricotAlmondChickpeaTagine,
-        recipes.apricotAlmondChickpeaTagine,
-        recipes.sunDriedTomatoSpaghetti,
-        recipes.chickenGyroCouscousBowls,
-        recipes.sweetChiliTurkeyGreenBeanBowls,
-    ]);
+    const allRecipes = Object.values(recipes);
+    const [selectedRecipes, setSelectedRecipes] = useState<string[]>([]);
 
-    const output = formatOutput(list);
+    const targetRecipes = allRecipes.filter((r) =>
+        selectedRecipes.find((el) => r.name === el)
+    );
+
+    const output = formatOutput(createShoppingList(targetRecipes));
+
+    console.log({ output });
 
     return (
         <div>
+            <label htmlFor="recipes">Recipe list</label>
+            <select
+                style={{ height: 400 }}
+                id="recipes"
+                multiple
+                value={selectedRecipes}
+                onChange={(e) => {
+                    const val = Array.from(
+                        e.target.selectedOptions,
+                        (opt) => opt.value
+                    );
+                    setSelectedRecipes(val);
+                }}
+            >
+                {allRecipes.map((k) => {
+                    return (
+                        <option value={k.name} key={k.name}>
+                            {k.name}
+                        </option>
+                    );
+                })}
+            </select>
+            <button onClick={() => setSelectedRecipes([])}>Reset</button>
             {Object.entries(output).map(([k, v]) => {
                 return (
                     <pre key={k}>
