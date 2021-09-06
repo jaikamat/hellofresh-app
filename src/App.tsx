@@ -37,7 +37,7 @@ function createShoppingList(recipes: Recipe[]): Ingredient[] {
 }
 
 /**
- * Finds and replaces hyphens and replaces with strings, and correctly cases word
+ * Finds and replaces hyphens and replaces with strings, and correctly cases word.
  */
 function prettyFoodName(name: string) {
     const transformed = name
