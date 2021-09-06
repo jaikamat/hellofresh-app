@@ -1,6 +1,7 @@
-import { Recipe, Ingredient, FoodCategory, Unit } from "./types";
+import { Recipe, Ingredient, Unit } from "./types";
 import * as recipes from "./recipes";
 import { useState } from "react";
+import "./index.css";
 
 /**
  * This function takes in all our ingredients and sums them
@@ -55,25 +56,30 @@ function prettyFoodName(name: string) {
     return `${transformed}`;
 }
 
-function formatOutput(ingredients: Ingredient[]) {
-    const output: Record<string, string[]> = {};
+function ingredientLineItem(ingredient: Ingredient) {
+    const foodName = `${prettyFoodName(ingredient.food.name)}`;
+    const unit = ingredient.unit === Unit.INTEGER ? "" : ` ${ingredient.unit}`;
+    const amount = `${ingredient.quantity}${unit}`;
 
-    Object.keys(FoodCategory).forEach((category) => {
-        const categoryItems = ingredients.filter(
-            (f) => f.food.category === category
-        );
-        if (categoryItems.length > 0) {
-            const items = categoryItems.map((f) => {
-                const foodName = `${prettyFoodName(f.food.name)}`;
-                const unit = f.unit === Unit.INTEGER ? "" : ` ${f.unit}`;
-                const amount = `${f.quantity}${unit}`;
+    return `${amount} ${foodName}`;
+}
 
-                return `${amount} ${foodName}`;
-            });
+type FoodGroup = Record<string, Ingredient[]>;
 
-            output[category] = items;
+function groupByCategory(ingredients: Ingredient[]): FoodGroup {
+    const output: FoodGroup = {};
+
+    // Group the ingredients by category
+    for (let i = 0; i < ingredients.length; i++) {
+        const currentIngredient = ingredients[i];
+        const category = currentIngredient.food.category;
+
+        if (category in output) {
+            output[category].push(currentIngredient);
+        } else {
+            output[category] = [currentIngredient];
         }
-    });
+    }
 
     return output;
 }
@@ -86,7 +92,7 @@ function App() {
         selectedRecipes.find((el) => r.name === el)
     );
 
-    const output = formatOutput(createShoppingList(targetRecipes));
+    const output = groupByCategory(createShoppingList(targetRecipes));
 
     return (
         <div>
@@ -115,12 +121,12 @@ function App() {
             <button onClick={() => setSelectedRecipes([])}>Reset</button>
             {Object.entries(output).map(([k, v]) => {
                 return (
-                    <pre key={k}>
+                    <div key={k}>
                         <h3>{k}</h3>
                         {v.map((f) => (
-                            <p key={f}>{f}</p>
+                            <p key={f.food.name}>{ingredientLineItem(f)}</p>
                         ))}
-                    </pre>
+                    </div>
                 );
             })}
         </div>
