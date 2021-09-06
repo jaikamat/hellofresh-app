@@ -9,11 +9,11 @@ import {
     SOUR_CREAM,
     VEGETABLE_STOCK_CONCENTRATE,
     ZUCCHINI,
-} from '../food';
-import { Recipe, Unit } from '../types';
+} from "../food";
+import { Recipe, Unit } from "../types";
 
 const recipe: Recipe = {
-    name: 'silky sicilian penne',
+    name: "silky sicilian penne",
     ingredients: [
         {
             food: ZUCCHINI,
@@ -32,8 +32,8 @@ const recipe: Recipe = {
         },
         {
             food: CHIVES,
-            quantity: 0.25,
-            unit: Unit.OZ,
+            quantity: 2,
+            unit: Unit.INTEGER,
         },
         {
             food: LEMON,
