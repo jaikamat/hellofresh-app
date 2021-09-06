@@ -8,11 +8,11 @@ import {
     ISRAELI_COUSCOUS,
     SLICED_ALMONDS,
     FETA_CHEESE,
-} from '../food';
-import { Recipe, Unit } from '../types';
+} from "../food";
+import { Recipe, Unit } from "../types";
 
 const recipe: Recipe = {
-    name: 'mediterranean baked veggies',
+    name: "mediterranean baked veggies",
     ingredients: [
         {
             food: GARLIC_CLOVE,
@@ -46,8 +46,8 @@ const recipe: Recipe = {
         },
         {
             food: ISRAELI_COUSCOUS,
-            quantity: 0.75,
-            unit: Unit.CUP,
+            quantity: 6.25,
+            unit: Unit.OZ,
         },
         {
             food: SLICED_ALMONDS,

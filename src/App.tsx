@@ -24,7 +24,7 @@ function createShoppingList(recipes: Recipe[]): Ingredient[] {
         if (ingredientLocation > -1) {
             if (output[ingredientLocation].unit !== i.unit) {
                 throw new Error(
-                    `Unit mismatch detected in ingredient: ${i.food} | ${i.unit}, ${output[ingredientLocation].food} | ${output[ingredientLocation].unit}`
+                    `Unit mismatch detected in ingredient: ${i.food.name} | ${i.unit}, ${output[ingredientLocation].food} | ${output[ingredientLocation].unit}`
                 );
             }
             output[ingredientLocation].quantity += i.quantity;

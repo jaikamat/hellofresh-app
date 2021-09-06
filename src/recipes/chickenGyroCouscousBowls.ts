@@ -11,11 +11,11 @@ import {
     FETA_CHEESE,
     SOUR_CREAM,
     HUMMUS,
-} from '../food';
-import { Recipe, Unit } from '../types';
+} from "../food";
+import { Recipe, Unit } from "../types";
 
 const recipe: Recipe = {
-    name: 'chicken gyro couscous bowls',
+    name: "chicken gyro couscous bowls",
     ingredients: [
         {
             food: SHALLOT,
@@ -44,7 +44,7 @@ const recipe: Recipe = {
         },
         {
             food: ISRAELI_COUSCOUS,
-            quantity: 2.5,
+            quantity: 5,
             unit: Unit.OZ,
         },
         {
