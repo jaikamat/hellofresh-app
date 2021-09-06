@@ -1,0 +1,19 @@
+.Container {
+    padding: 18px;
+}
+.Header {
+    font-weight: bold;
+}
+.SelectBox {
+    height: 200px;
+}
+.FlexContainer {
+    display: flex;
+}
+.FlexItem {
+    margin-right: 18px;
+}
+.ListContainer {
+    margin-top: 8px;
+    margin-bottom: 8px;
+}

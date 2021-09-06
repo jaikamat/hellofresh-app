@@ -2,6 +2,7 @@ import { Recipe, Ingredient, Unit } from "./types";
 import * as recipes from "./recipes";
 import { useState } from "react";
 import "./index.css";
+import "./style.css";
 
 /**
  * This function takes in all our ingredients and sums them
@@ -95,40 +96,54 @@ function App() {
     const output = groupByCategory(createShoppingList(targetRecipes));
 
     return (
-        <div>
-            <label htmlFor="recipes">Recipe list</label>
-            <select
-                style={{ height: 400 }}
-                id="recipes"
-                multiple
-                value={selectedRecipes}
-                onChange={(e) => {
-                    const val = Array.from(
-                        e.target.selectedOptions,
-                        (opt) => opt.value
-                    );
-                    setSelectedRecipes(val);
-                }}
-            >
-                {allRecipes.map((k) => {
-                    return (
-                        <option value={k.name} key={k.name}>
-                            {k.name}
-                        </option>
-                    );
-                })}
-            </select>
-            <button onClick={() => setSelectedRecipes([])}>Reset</button>
-            {Object.entries(output).map(([k, v]) => {
-                return (
-                    <div key={k}>
-                        <h3>{k}</h3>
-                        {v.map((f) => (
-                            <p key={f.food.name}>{ingredientLineItem(f)}</p>
-                        ))}
+        <div className="Container">
+            <div className="FlexContainer">
+                <div className="FlexItem">
+                    <div>Select some recipes</div>
+                    <select
+                        className="SelectBox"
+                        id="recipes"
+                        multiple
+                        value={selectedRecipes}
+                        onChange={(e) => {
+                            const val = Array.from(
+                                e.target.selectedOptions,
+                                (opt) => opt.value
+                            );
+                            setSelectedRecipes(val);
+                        }}
+                    >
+                        {allRecipes.map((k) => {
+                            return (
+                                <option value={k.name} key={k.name}>
+                                    {k.name}
+                                </option>
+                            );
+                        })}
+                    </select>
+                    <div>
+                        <button onClick={() => setSelectedRecipes([])}>
+                            Reset
+                        </button>
                     </div>
-                );
-            })}
+                </div>
+                <div className="FlexItem">
+                    {Object.entries(output).map(([k, v]) => {
+                        return (
+                            <div key={k}>
+                                <h3 className="Header">{k}</h3>
+                                <div className="ListContainer">
+                                    {v.map((f) => (
+                                        <p key={f.food.name}>
+                                            {ingredientLineItem(f)}
+                                        </p>
+                                    ))}
+                                </div>
+                            </div>
+                        );
+                    })}
+                </div>
+            </div>
         </div>
     );
 }
