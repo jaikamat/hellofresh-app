@@ -3,37 +3,44 @@ import * as recipes from "./recipes";
 import { useState } from "react";
 
 /**
- * For each element in the recipe list
- * if it exists in output
- * add the qty
- * otherwise push it to output
+ * This function takes in all our ingredients and sums them
  */
 function createShoppingList(recipes: Recipe[]): Ingredient[] {
-    const totalIngredients = recipes.reduce<Ingredient[]>(
-        (acc, curr) => acc.concat(curr.ingredients),
-        []
-    );
+    const totalIngredients = recipes.flatMap((r) => r.ingredients);
 
-    const output: Ingredient[] = [];
+    const cache: Record<string, Ingredient[]> = {};
 
-    totalIngredients.forEach((i) => {
-        const ingredientLocation = output.findIndex(
-            (o) => o.food.name === i.food.name
+    // Store the ingredients in the cache to group them
+    for (let i = 0; i < totalIngredients.length; i++) {
+        const currentIngedient = totalIngredients[i];
+        const foodName = currentIngedient.food.name;
+
+        if (foodName in cache) {
+            cache[foodName].push(currentIngedient);
+        } else {
+            cache[foodName] = [currentIngedient];
+        }
+    }
+
+    // Reduce the group to add quantities
+    const reduced: Ingredient[] = Object.values(cache).map((group) => {
+        // Ensure that all array elements have the same unit
+        if (!group.every((i) => i.unit === group[0].unit)) {
+            throw new Error(`Unit mismatch in ${JSON.stringify(group)}`);
+        }
+
+        const totalQuantity = group.reduce(
+            (acc, curr) => acc + curr.quantity,
+            0
         );
 
-        if (ingredientLocation > -1) {
-            if (output[ingredientLocation].unit !== i.unit) {
-                throw new Error(
-                    `Unit mismatch detected in ingredient: ${i.food.name} | ${i.unit}, ${output[ingredientLocation].food} | ${output[ingredientLocation].unit}`
-                );
-            }
-            output[ingredientLocation].quantity += i.quantity;
-        } else {
-            output.push(i);
-        }
+        return {
+            ...group[0],
+            quantity: totalQuantity,
+        };
     });
 
-    return output.sort((a, b) => a.food.name.localeCompare(b.food.name));
+    return reduced.sort((a, b) => a.food.name.localeCompare(b.food.name));
 }
 
 /**
