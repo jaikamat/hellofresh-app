@@ -88,8 +88,6 @@ function App() {
 
     const output = formatOutput(createShoppingList(targetRecipes));
 
-    console.log({ output });
-
     return (
         <div>
             <label htmlFor="recipes">Recipe list</label>
