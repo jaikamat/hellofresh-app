@@ -93,13 +93,15 @@ function App() {
         selectedRecipes.find((el) => r.name === el)
     );
 
+    console.log({ targetRecipes });
+
     const output = groupByCategory(createShoppingList(targetRecipes));
 
     return (
         <div className="Container">
             <div className="FlexContainer">
                 <div className="FlexItem">
-                    <div>Select some recipes</div>
+                    <div>Select some recipes:</div>
                     <select
                         className="SelectBox"
                         id="recipes"
@@ -143,6 +145,16 @@ function App() {
                         );
                     })}
                 </div>
+                {targetRecipes.length > 0 && (
+                    <div className="FlexItem">
+                        <div>You selected:</div>
+                        <ul>
+                            {targetRecipes.map((tr) => {
+                                return <li>- {tr.name}</li>;
+                            })}
+                        </ul>
+                    </div>
+                )}
             </div>
         </div>
     );
