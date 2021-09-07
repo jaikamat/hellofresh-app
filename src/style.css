@@ -4,14 +4,11 @@
 .Header {
     font-weight: bold;
 }
-.SelectBox {
-    height: 200px;
-}
 .FlexContainer {
     display: flex;
 }
-.FlexItem {
-    margin-right: 18px;
+.ItemContainer {
+    padding-bottom: 16px;
 }
 .ListContainer {
     margin-top: 8px;

@@ -99,63 +99,60 @@ function App() {
 
     return (
         <div className="Container">
-            <div className="FlexContainer">
-                <div className="FlexItem">
-                    <div>Select some recipes:</div>
-                    <select
-                        className="SelectBox"
-                        id="recipes"
-                        multiple
-                        value={selectedRecipes}
-                        onChange={(e) => {
-                            const val = Array.from(
-                                e.target.selectedOptions,
-                                (opt) => opt.value
-                            );
-                            setSelectedRecipes(val);
-                        }}
-                    >
-                        {allRecipes.map((k) => {
-                            return (
-                                <option value={k.name} key={k.name}>
-                                    {k.name}
-                                </option>
-                            );
-                        })}
-                    </select>
-                    <div>
-                        <button onClick={() => setSelectedRecipes([])}>
-                            Reset
-                        </button>
-                    </div>
-                </div>
-                <div className="FlexItem">
-                    {Object.entries(output).map(([k, v]) => {
+            <div className="ItemContainer">
+                <div>Select some recipes:</div>
+                <select
+                    id="recipes"
+                    multiple
+                    value={selectedRecipes}
+                    onChange={(e) => {
+                        const val = Array.from(
+                            e.target.selectedOptions,
+                            (opt) => opt.value
+                        );
+                        setSelectedRecipes(val);
+                    }}
+                >
+                    {allRecipes.map((k) => {
                         return (
-                            <div key={k}>
-                                <h3 className="Header">{k}</h3>
-                                <div className="ListContainer">
-                                    {v.map((f) => (
-                                        <p key={f.food.name}>
-                                            {ingredientLineItem(f)}
-                                        </p>
-                                    ))}
-                                </div>
-                            </div>
+                            <option value={k.name} key={k.name}>
+                                {k.name}
+                            </option>
                         );
                     })}
+                </select>
+                <div>
+                    <button onClick={() => setSelectedRecipes([])}>
+                        Reset
+                    </button>
                 </div>
-                {targetRecipes.length > 0 && (
-                    <div className="FlexItem">
-                        <div>You selected:</div>
-                        <ul>
-                            {targetRecipes.map((tr) => {
-                                return <li>- {tr.name}</li>;
-                            })}
-                        </ul>
-                    </div>
-                )}
             </div>
+            <div className="ItemContainer">
+                {Object.entries(output).map(([k, v]) => {
+                    return (
+                        <div key={k}>
+                            <h3 className="Header">{k}</h3>
+                            <div className="ListContainer">
+                                {v.map((f) => (
+                                    <p key={f.food.name}>
+                                        {ingredientLineItem(f)}
+                                    </p>
+                                ))}
+                            </div>
+                        </div>
+                    );
+                })}
+            </div>
+            {targetRecipes.length > 0 && (
+                <div className="ItemContainer">
+                    <div>You selected:</div>
+                    <ul>
+                        {targetRecipes.map((tr) => {
+                            return <li>- {tr.name}</li>;
+                        })}
+                    </ul>
+                </div>
+            )}
         </div>
     );
 }
