@@ -7,11 +7,11 @@ import {
     LIME,
     SWEET_SOY_GLAZE,
     SWEET_THAI_CHILI_SAUCE,
-} from '../food';
-import { Recipe, Unit } from '../types';
+} from "../food";
+import { Recipe, Unit } from "../types";
 
 const recipe: Recipe = {
-    name: 'sweet chili turkey & green bean bowls',
+    name: "Sweet chili turkey & green bean bowls",
     ingredients: [
         {
             food: JASMINE_RICE,

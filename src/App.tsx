@@ -59,7 +59,10 @@ function prettyFoodName(name: string) {
 
 function ingredientLineItem(ingredient: Ingredient) {
     const foodName = `${prettyFoodName(ingredient.food.name)}`;
-    const unit = ingredient.unit === Unit.INTEGER ? "" : ` ${ingredient.unit}`;
+    const unit =
+        ingredient.unit === Unit.INTEGER
+            ? ""
+            : ` ${ingredient.unit.toLowerCase()}`;
     const amount = `${ingredient.quantity}${unit}`;
 
     return `${amount} ${foodName}`;
@@ -92,8 +95,6 @@ function App() {
     const targetRecipes = allRecipes.filter((r) =>
         selectedRecipes.find((el) => r.name === el)
     );
-
-    console.log({ targetRecipes });
 
     const output = groupByCategory(createShoppingList(targetRecipes));
 

@@ -15,7 +15,7 @@ import {
 import { Recipe, Unit } from "../types";
 
 const recipe: Recipe = {
-    name: "chicken gyro couscous bowls",
+    name: "Chicken gyro couscous bowls",
     ingredients: [
         {
             food: SHALLOT,

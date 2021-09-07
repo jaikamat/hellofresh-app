@@ -9,11 +9,11 @@ import {
     BALSAMIC_GLAZE,
     CHILI_FLAKES,
     MOZZARELLA_CHEESE,
-} from '../food';
-import { Recipe, Unit } from '../types';
+} from "../food";
+import { Recipe, Unit } from "../types";
 
 const recipe: Recipe = {
-    name: 'bruschetta zucchini boats',
+    name: "Bruschetta zucchini boats",
     ingredients: [
         {
             food: ZUCCHINI,

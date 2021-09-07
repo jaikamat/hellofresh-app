@@ -9,11 +9,11 @@ import {
     JASMINE_RICE,
     LIME,
     SWEET_THAI_CHILI_SAUCE,
-} from '../food';
-import { Recipe, Unit } from '../types';
+} from "../food";
+import { Recipe, Unit } from "../types";
 
 const recipe: Recipe = {
-    name: 'thai coconut curry chicken',
+    name: "Thai coconut curry chicken",
     ingredients: [
         {
             food: JASMINE_RICE,

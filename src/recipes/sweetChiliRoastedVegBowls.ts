@@ -10,11 +10,11 @@ import {
     RICE_WINE_VINEGAR,
     COLESLAW_MIX,
     CRISPY_FRIED_ONIONS,
-} from '../food';
-import { Recipe, Unit } from '../types';
+} from "../food";
+import { Recipe, Unit } from "../types";
 
 const recipe: Recipe = {
-    name: 'sweet chili roasted veg bowls',
+    name: "Sweet chili roasted veg bowls",
     ingredients: [
         {
             food: SWEET_POTATO,

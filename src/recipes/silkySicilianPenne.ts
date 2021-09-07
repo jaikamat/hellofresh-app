@@ -13,7 +13,7 @@ import {
 import { Recipe, Unit } from "../types";
 
 const recipe: Recipe = {
-    name: "silky sicilian penne",
+    name: "Silky sicilian penne",
     ingredients: [
         {
             food: ZUCCHINI,

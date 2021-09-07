@@ -12,7 +12,7 @@ import {
 import { Recipe, Unit } from "../types";
 
 const recipe: Recipe = {
-    name: "mediterranean baked veggies",
+    name: "Mediterranean baked veggies",
     ingredients: [
         {
             food: GARLIC_CLOVE,

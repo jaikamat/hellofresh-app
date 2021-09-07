@@ -9,11 +9,11 @@ import {
     MAYONNAISE,
     SOUR_CREAM,
     SRIRACHA,
-} from '../food';
-import { Recipe, Unit } from '../types';
+} from "../food";
+import { Recipe, Unit } from "../types";
 
 const recipe: Recipe = {
-    name: 'hoisin sweet potato & mushroom bowl',
+    name: "Hoisin sweet potato & mushroom bowl",
     ingredients: [
         {
             food: SCALLION,

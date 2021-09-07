@@ -9,11 +9,11 @@ import {
     VEGETABLE_STOCK_CONCENTRATE,
     SHREDDED_RED_CABBAGE,
     SOUR_CREAM,
-} from '../food';
-import { Recipe, Unit } from '../types';
+} from "../food";
+import { Recipe, Unit } from "../types";
 
 const recipe: Recipe = {
-    name: 'crunchy curried chickpea bowls',
+    name: "Crunchy curried chickpea bowls",
     ingredients: [
         {
             food: CHICKPEAS,

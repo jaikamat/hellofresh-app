@@ -9,11 +9,11 @@ import {
     CHICKEN_BREAST,
     SOUTHWEST_SPICE_BLEND,
     CHICKEN_STOCK_CONCENTRATE,
-} from '../food';
-import { Recipe, Unit } from '../types';
+} from "../food";
+import { Recipe, Unit } from "../types";
 
 const recipe: Recipe = {
-    name: 'surfs up chicken & rice bowl',
+    name: "Surfs up chicken & rice bowl",
     ingredients: [
         {
             food: SCALLION,

@@ -10,11 +10,11 @@ import {
     SHAWARMA_SPICE_BLEND,
     SOUR_CREAM,
     YOGURT,
-} from '../food';
-import { Recipe, Unit } from '../types';
+} from "../food";
+import { Recipe, Unit } from "../types";
 
 const recipe: Recipe = {
-    name: 'shawarma-speiced chicken',
+    name: "Shawarma-spiced chicken",
     ingredients: [
         {
             food: CHICKEN_CUTLET,

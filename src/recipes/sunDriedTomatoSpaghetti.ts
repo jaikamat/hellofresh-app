@@ -9,11 +9,11 @@ import {
     SPAGHETTI,
     SUN_DRIED_TOMATOES,
     VEGETABLE_STOCK_CONCENTRATE,
-} from '../food';
-import { Recipe, Unit } from '../types';
+} from "../food";
+import { Recipe, Unit } from "../types";
 
 const recipe: Recipe = {
-    name: 'sun-dried tomato spaghetti',
+    name: "Sun-dried tomato spaghetti",
     ingredients: [
         {
             food: SUN_DRIED_TOMATOES,

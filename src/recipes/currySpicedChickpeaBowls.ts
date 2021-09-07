@@ -13,11 +13,11 @@ import {
     CHILI_PEPPER_FRESH,
     YOGURT,
     SOUR_CREAM,
-} from '../food';
-import { Recipe, Unit } from '../types';
+} from "../food";
+import { Recipe, Unit } from "../types";
 
 const recipe: Recipe = {
-    name: 'curry-spiced chickpea bowls',
+    name: "Curry-spiced chickpea bowls",
     ingredients: [
         {
             food: GARLIC_CLOVE,

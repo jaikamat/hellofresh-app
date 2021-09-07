@@ -12,11 +12,11 @@ import {
     VEGETABLE_STOCK_CONCENTRATE,
     YELLOW_ONION,
     ZUCCHINI,
-} from '../food';
-import { Recipe, Unit } from '../types';
+} from "../food";
+import { Recipe, Unit } from "../types";
 
 const recipe: Recipe = {
-    name: 'apricot, almond, & chickpea tagine',
+    name: "Apricot, almond, & chickpea tagine",
     ingredients: [
         {
             food: YELLOW_ONION,

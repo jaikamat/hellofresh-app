@@ -9,11 +9,11 @@ import {
     SOUR_CREAM,
     TRUFFLE_ZEST,
     VEGETABLE_STOCK_CONCENTRATE,
-} from '../food';
-import { Recipe, Unit } from '../types';
+} from "../food";
+import { Recipe, Unit } from "../types";
 
 const recipe: Recipe = {
-    name: 'triple mushroom truffle gnocchi',
+    name: "Triple mushroom truffle gnocchi",
     ingredients: [
         {
             food: BUTTON_MUSHROOMS,

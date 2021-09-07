@@ -10,11 +10,11 @@ import {
     ISRAELI_COUSCOUS,
     VEGETABLE_STOCK_CONCENTRATE,
     FETA_CHEESE,
-} from '../food';
-import { Recipe, Unit } from '../types';
+} from "../food";
+import { Recipe, Unit } from "../types";
 
 const recipe: Recipe = {
-    name: 'chickpea-powered mediterranean couscous',
+    name: "Chickpea-powered mediterranean couscous",
     ingredients: [
         {
             food: ZUCCHINI,
