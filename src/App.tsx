@@ -155,7 +155,19 @@ function App() {
                     <h3 className="Header">Selected recipes</h3>
                     <ul>
                         {targetRecipes.map((tr) => {
-                            return <li>- {tr.name}</li>;
+                            const link = tr.directions ? (
+                                <a href={tr.directions} target="_blank">
+                                    {tr.name}
+                                </a>
+                            ) : (
+                                <>{tr.name} (link unavailable)</>
+                            );
+
+                            if (tr.directions) {
+                                return <li>- {link}</li>;
+                            }
+
+                            return <li>- {link}</li>;
                         })}
                     </ul>
                 </div>
