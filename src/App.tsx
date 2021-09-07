@@ -101,29 +101,35 @@ function App() {
     return (
         <div className="Container">
             <div className="ItemContainer">
-                <div>Select some recipes:</div>
-                <select
-                    id="recipes"
-                    multiple
-                    value={selectedRecipes}
-                    onChange={(e) => {
-                        const val = Array.from(
-                            e.target.selectedOptions,
-                            (opt) => opt.value
-                        );
-                        setSelectedRecipes(val);
-                    }}
-                >
-                    {allRecipes.map((k) => {
-                        return (
-                            <option value={k.name} key={k.name}>
-                                {k.name}
-                            </option>
-                        );
-                    })}
-                </select>
+                <h3 className="Header">Select some recipes</h3>
+                <div className="SelectContainer">
+                    <select
+                        id="recipes"
+                        className="Select"
+                        multiple
+                        value={selectedRecipes}
+                        onChange={(e) => {
+                            const val = Array.from(
+                                e.target.selectedOptions,
+                                (opt) => opt.value
+                            );
+                            setSelectedRecipes(val);
+                        }}
+                    >
+                        {allRecipes.map((k) => {
+                            return (
+                                <option value={k.name} key={k.name}>
+                                    {k.name}
+                                </option>
+                            );
+                        })}
+                    </select>
+                </div>
                 <div>
-                    <button onClick={() => setSelectedRecipes([])}>
+                    <button
+                        className="Button"
+                        onClick={() => setSelectedRecipes([])}
+                    >
                         Reset
                     </button>
                 </div>
@@ -146,7 +152,7 @@ function App() {
             </div>
             {targetRecipes.length > 0 && (
                 <div className="ItemContainer">
-                    <div>You selected:</div>
+                    <h3 className="Header">Selected recipes</h3>
                     <ul>
                         {targetRecipes.map((tr) => {
                             return <li>- {tr.name}</li>;
