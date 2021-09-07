@@ -14,6 +14,8 @@ import { Recipe, Unit } from "../types";
 
 const recipe: Recipe = {
     name: "Triple mushroom truffle gnocchi",
+    directions:
+        "https://www.hellofresh.com/recipes/triple-mushroom-truffle-gnocchi-60b7893b9167fc185e3608e2",
     ingredients: [
         {
             food: BUTTON_MUSHROOMS,

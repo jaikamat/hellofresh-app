@@ -14,6 +14,8 @@ import { Recipe, Unit } from "../types";
 
 const recipe: Recipe = {
     name: "Bruschetta zucchini boats",
+    directions:
+        "https://www.hellofresh.com/recipes/bruschetta-zucchini-boats-6076d4f3170cf01453212d38",
     ingredients: [
         {
             food: ZUCCHINI,

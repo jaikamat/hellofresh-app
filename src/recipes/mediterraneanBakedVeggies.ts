@@ -13,6 +13,8 @@ import { Recipe, Unit } from "../types";
 
 const recipe: Recipe = {
     name: "Mediterranean baked veggies",
+    directions:
+        "https://www.hellofresh.com/recipes/mediterranean-baked-veggies-605a5aa0932040538e75dd59",
     ingredients: [
         {
             food: GARLIC_CLOVE,

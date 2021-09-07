@@ -18,6 +18,8 @@ import { Recipe, Unit } from "../types";
 
 const recipe: Recipe = {
     name: "Curry-spiced chickpea bowls",
+    directions:
+        "https://www.hellofresh.com/recipes/curry-spiced-chickpea-bowls-60c0c7a552bed1601b0ad6f6",
     ingredients: [
         {
             food: GARLIC_CLOVE,

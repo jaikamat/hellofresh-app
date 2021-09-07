@@ -16,6 +16,8 @@ import { Recipe, Unit } from "../types";
 
 const recipe: Recipe = {
     name: "Chicken gyro couscous bowls",
+    directions:
+        "https://www.hellofresh.com/recipes/chicken-gyro-couscous-bowls-5db89647bf86901f1432f7a1",
     ingredients: [
         {
             food: SHALLOT,

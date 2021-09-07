@@ -15,6 +15,8 @@ import { Recipe, Unit } from "../types";
 
 const recipe: Recipe = {
     name: "Chickpea-powered mediterranean couscous",
+    directions:
+        "https://www.hellofresh.com/recipes/15-09-594148b52310a816313c5172",
     ingredients: [
         {
             food: ZUCCHINI,

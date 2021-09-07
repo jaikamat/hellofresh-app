@@ -14,6 +14,8 @@ import { Recipe, Unit } from "../types";
 
 const recipe: Recipe = {
     name: "Thai coconut curry chicken",
+    directions:
+        "https://www.hellofresh.com/recipes/thai-coconut-curry-chicken-5fea59f795e99a13fb4bddf0",
     ingredients: [
         {
             food: JASMINE_RICE,

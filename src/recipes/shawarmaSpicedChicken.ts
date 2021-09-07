@@ -15,6 +15,8 @@ import { Recipe, Unit } from "../types";
 
 const recipe: Recipe = {
     name: "Shawarma-spiced chicken",
+    directions:
+        "https://www.hellofresh.com/recipes/shawarma-spiced-chicken-6022a8fecc8aeb3ff86eed92",
     ingredients: [
         {
             food: CHICKEN_CUTLET,

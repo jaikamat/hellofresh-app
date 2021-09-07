@@ -14,6 +14,8 @@ import { Recipe, Unit } from "../types";
 
 const recipe: Recipe = {
     name: "Hoisin sweet potato & mushroom bowl",
+    directions:
+        "https://www.hellofresh.com/recipes/hoisin-sweet-potato-mushroom-bowls-608965dd77cc7513912c1c06",
     ingredients: [
         {
             food: SCALLION,

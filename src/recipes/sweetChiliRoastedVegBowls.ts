@@ -15,6 +15,8 @@ import { Recipe, Unit } from "../types";
 
 const recipe: Recipe = {
     name: "Sweet chili roasted veg bowls",
+    directions:
+        "https://www.hellofresh.com/recipes/sweet-chili-roasted-veg-bowls-606cb3effda24c420770cf0b",
     ingredients: [
         {
             food: SWEET_POTATO,

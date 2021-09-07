@@ -14,6 +14,8 @@ import { Recipe, Unit } from "../types";
 
 const recipe: Recipe = {
     name: "Surfs up chicken & rice bowl",
+    directions:
+        "https://www.hellofresh.com/recipes/surfs-up-chicken-rice-bowls-6019715d75a1df47d4055154",
     ingredients: [
         {
             food: SCALLION,

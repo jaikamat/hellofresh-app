@@ -17,6 +17,8 @@ import { Recipe, Unit } from "../types";
 
 const recipe: Recipe = {
     name: "Apricot, almond, & chickpea tagine",
+    directions:
+        "https://www.hellofresh.com/recipes/apricot-almond-chickpea-tagine-611d20d9ce6339545f2530f9",
     ingredients: [
         {
             food: YELLOW_ONION,

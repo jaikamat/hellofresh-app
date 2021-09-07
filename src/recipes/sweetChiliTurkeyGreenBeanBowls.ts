@@ -12,6 +12,8 @@ import { Recipe, Unit } from "../types";
 
 const recipe: Recipe = {
     name: "Sweet chili turkey & green bean bowls",
+    directions:
+        "https://www.hellofresh.com/recipes/sweet-chili-pork-green-bean-bowls-5fd913fd4083e0249b5ad5e3",
     ingredients: [
         {
             food: JASMINE_RICE,

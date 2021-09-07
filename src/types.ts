@@ -97,6 +97,7 @@ export enum Unit {
 export interface Recipe {
     name: string;
     ingredients: Ingredient[];
+    directions?: string;
 }
 
 interface Food {

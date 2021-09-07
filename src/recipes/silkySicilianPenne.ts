@@ -14,6 +14,8 @@ import { Recipe, Unit } from "../types";
 
 const recipe: Recipe = {
     name: "Silky sicilian penne",
+    directions:
+        "https://www.hellofresh.com/recipes/silky-sicilian-mushroom-penne-5e39c13ff1e8243dda35c94f",
     ingredients: [
         {
             food: ZUCCHINI,

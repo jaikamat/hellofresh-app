@@ -14,6 +14,8 @@ import { Recipe, Unit } from "../types";
 
 const recipe: Recipe = {
     name: "Crunchy curried chickpea bowls",
+    directions:
+        "https://www.hellofresh.com/recipes/crunchy-curried-chickpea-bowls-610178729143787c7859ba20",
     ingredients: [
         {
             food: CHICKPEAS,
