@@ -1,6 +1,14 @@
 import { Recipe, Ingredient, Unit } from "./types";
 import * as recipes from "./recipes";
 import { useState } from "react";
+import {
+    Container,
+    Link,
+    List,
+    ListItem,
+    Stack,
+    Typography,
+} from "@mui/material";
 
 /**
  * This function takes in all our ingredients and sums them
@@ -97,80 +105,95 @@ function App() {
     const output = groupByCategory(createShoppingList(targetRecipes));
 
     return (
-        <div className="Container">
-            <div className="ItemContainer">
-                <h3 className="Header">Select some recipes</h3>
-                <div className="SelectContainer">
-                    <select
-                        id="recipes"
-                        className="Select"
-                        multiple
-                        value={selectedRecipes}
-                        onChange={(e) => {
-                            const val = Array.from(
-                                e.target.selectedOptions,
-                                (opt) => opt.value
-                            );
-                            setSelectedRecipes(val);
-                        }}
-                    >
-                        {allRecipes.map((k) => {
-                            return (
-                                <option value={k.name} key={k.name}>
-                                    {k.name}
-                                </option>
-                            );
-                        })}
-                    </select>
+        <Container>
+            <Stack spacing={2}>
+                <div className="ItemContainer">
+                    <Typography variant="h5">Select some recipes</Typography>
+                    <div className="SelectContainer">
+                        <select
+                            id="recipes"
+                            className="Select"
+                            multiple
+                            value={selectedRecipes}
+                            onChange={(e) => {
+                                const val = Array.from(
+                                    e.target.selectedOptions,
+                                    (opt) => opt.value
+                                );
+                                setSelectedRecipes(val);
+                            }}
+                        >
+                            {allRecipes.map((k) => {
+                                return (
+                                    <option value={k.name} key={k.name}>
+                                        {k.name}
+                                    </option>
+                                );
+                            })}
+                        </select>
+                    </div>
+                    <div>
+                        <button
+                            className="Button"
+                            onClick={() => setSelectedRecipes([])}
+                        >
+                            Reset
+                        </button>
+                    </div>
                 </div>
-                <div>
-                    <button
-                        className="Button"
-                        onClick={() => setSelectedRecipes([])}
-                    >
-                        Reset
-                    </button>
-                </div>
-            </div>
-            <div className="ItemContainer">
                 {Object.entries(output).map(([k, v]) => {
                     return (
-                        <div key={k}>
-                            <h3 className="Header">{k}</h3>
-                            <div className="ListContainer">
+                        <Stack key={k}>
+                            <Typography variant="h6">{k}</Typography>
+                            <List>
                                 {v.map((f) => (
-                                    <p key={f.food.name}>
-                                        {ingredientLineItem(f)}
-                                    </p>
+                                    <ListItem disablePadding>
+                                        <Typography
+                                            variant="body1"
+                                            key={f.food.name}
+                                        >
+                                            {ingredientLineItem(f)}
+                                        </Typography>
+                                    </ListItem>
                                 ))}
-                            </div>
-                        </div>
+                            </List>
+                        </Stack>
                     );
                 })}
-            </div>
-            {targetRecipes.length > 0 && (
-                <div className="ItemContainer">
-                    <h3 className="Header">Selected recipes</h3>
-                    <ul>
-                        {targetRecipes.map((tr) => {
-                            const link = tr.directions ? (
-                                <a href={tr.directions} target="_blank">
-                                    {tr.name}
-                                </a>
-                            ) : (
-                                <>{tr.name} (link unavailable)</>
-                            );
+                {targetRecipes.length > 0 && (
+                    <Stack>
+                        <Typography variant="h6">Selected recipes</Typography>
+                        <List>
+                            {targetRecipes.map((tr) => {
+                                const link = tr.directions ? (
+                                    <Link
+                                        href={tr.directions}
+                                        target="_blank"
+                                        rel="noopener"
+                                    >
+                                        {tr.name}
+                                    </Link>
+                                ) : (
+                                    <>{tr.name} (link unavailable)</>
+                                );
 
-                            if (tr.directions) {
-                                return <li>- {link}</li>;
-                            }
+                                if (tr.directions) {
+                                    return (
+                                        <ListItem disablePadding>
+                                            {link}
+                                        </ListItem>
+                                    );
+                                }
 
-                            return <li>- {link}</li>;
-                        })}
-                    </ul>
-                </div>
-            )}
-        </div>
+                                return (
+                                    <ListItem disablePadding>{link}</ListItem>
+                                );
+                            })}
+                        </List>
+                    </Stack>
+                )}
+            </Stack>
+        </Container>
     );
 }
 
