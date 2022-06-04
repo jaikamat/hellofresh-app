@@ -9,6 +9,7 @@ import {
     Stack,
     Typography,
 } from "@mui/material";
+import MultiSelect from "./components/MultiSelect";
 
 /**
  * This function takes in all our ingredients and sums them
@@ -107,40 +108,12 @@ function App() {
     return (
         <Container>
             <Stack spacing={2}>
-                <div className="ItemContainer">
-                    <Typography variant="h5">Select some recipes</Typography>
-                    <div className="SelectContainer">
-                        <select
-                            id="recipes"
-                            className="Select"
-                            multiple
-                            value={selectedRecipes}
-                            onChange={(e) => {
-                                const val = Array.from(
-                                    e.target.selectedOptions,
-                                    (opt) => opt.value
-                                );
-                                setSelectedRecipes(val);
-                            }}
-                        >
-                            {allRecipes.map((k) => {
-                                return (
-                                    <option value={k.name} key={k.name}>
-                                        {k.name}
-                                    </option>
-                                );
-                            })}
-                        </select>
-                    </div>
-                    <div>
-                        <button
-                            className="Button"
-                            onClick={() => setSelectedRecipes([])}
-                        >
-                            Reset
-                        </button>
-                    </div>
-                </div>
+                <Typography variant="h5">Select some recipes</Typography>
+                <MultiSelect
+                    value={selectedRecipes}
+                    onChange={(v) => setSelectedRecipes(v)}
+                    options={allRecipes.map(({ name }) => name)}
+                />
                 {Object.entries(output).map(([k, v]) => {
                     return (
                         <Stack key={k}>
