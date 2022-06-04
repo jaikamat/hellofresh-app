@@ -1,4 +1,4 @@
-import { Checkbox, ListItem, Typography } from "@mui/material";
+import { Checkbox, ListItem, Typography, TypographyProps } from "@mui/material";
 import { useState } from "react";
 import { Ingredient, Unit } from "../types";
 
@@ -25,11 +25,23 @@ function ingredientLineItem(ingredient: Ingredient) {
     return `${amount} ${foodName}`;
 }
 
-interface Props {
+type StrikeProps = TypographyProps & { strike: boolean };
+
+const Strike: React.FC<StrikeProps> = ({ strike, children, ...rest }) => {
+    return (
+        <Typography {...rest}>
+            {strike ? <s>{children}</s> : children}
+        </Typography>
+    );
+};
+
+interface IngredientListItemProps {
     ingredient: Ingredient;
 }
 
-const IngredientListItem: React.FC<Props> = ({ ingredient }) => {
+const IngredientListItem: React.FC<IngredientListItemProps> = ({
+    ingredient,
+}) => {
     const [checked, setChecked] = useState<boolean>(false);
 
     return (
@@ -39,9 +51,9 @@ const IngredientListItem: React.FC<Props> = ({ ingredient }) => {
                 checked={checked}
                 onClick={() => setChecked(!checked)}
             />
-            <Typography variant="body1" key={ingredient.food.name}>
+            <Strike variant="body1" key={ingredient.food.name} strike={checked}>
                 {ingredientLineItem(ingredient)}
-            </Typography>
+            </Strike>
         </ListItem>
     );
 };
