@@ -12,14 +12,14 @@ import {
     useTheme,
 } from "@mui/material";
 
-interface MultiSelectDialogProps {
+interface Props {
     value: string[];
     onChange: (v: string[]) => void;
     options: string[];
     label: string;
 }
 
-const MultiSelectDialog: React.FC<MultiSelectDialogProps> = ({
+const MultiSelectDialog: React.FC<Props> = ({
     value,
     onChange,
     options,
@@ -69,7 +69,10 @@ const MultiSelectDialog: React.FC<MultiSelectDialogProps> = ({
                             key={option}
                             onClick={handleItemClick(option)}
                         >
-                            <Checkbox checked={dialogValue.includes(option)} />
+                            <Checkbox
+                                color="secondary"
+                                checked={dialogValue.includes(option)}
+                            />
                             <ListItemText primary={option} />
                         </ListItemButton>
                     ))}
@@ -83,7 +86,7 @@ const MultiSelectDialog: React.FC<MultiSelectDialogProps> = ({
             </Dialog>
             {value.length > 0 && (
                 <Button onClick={() => onChange([])} sx={{ width: "inherit" }}>
-                    Reset
+                    Reset selection
                 </Button>
             )}
         </Stack>

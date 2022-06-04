@@ -1,9 +1,8 @@
-import { Recipe, Ingredient, Unit } from "./types";
+import { Recipe, Ingredient } from "./types";
 import * as recipes from "./recipes";
 import { useState } from "react";
 import {
     Box,
-    Checkbox,
     Container,
     Grid,
     Link,
@@ -13,6 +12,7 @@ import {
     Typography,
 } from "@mui/material";
 import MultiSelectDialog from "./components/MultiSelectDialog";
+import IngredientListItem from "./components/IngredientListItem";
 
 /**
  * This function takes in all our ingredients and sums them
@@ -53,29 +53,6 @@ function createShoppingList(recipes: Recipe[]): Ingredient[] {
     });
 
     return reduced.sort((a, b) => a.food.name.localeCompare(b.food.name));
-}
-
-/**
- * Finds and replaces hyphens and replaces with strings, and correctly cases word.
- */
-function prettyFoodName(name: string) {
-    const transformed = name
-        .split("_")
-        .map((s) => s.toLowerCase())
-        .join(" ");
-
-    return `${transformed}`;
-}
-
-function ingredientLineItem(ingredient: Ingredient) {
-    const foodName = `${prettyFoodName(ingredient.food.name)}`;
-    const unit =
-        ingredient.unit === Unit.INTEGER
-            ? ""
-            : ` ${ingredient.unit.toLowerCase()}`;
-    const amount = `${ingredient.quantity}${unit}`;
-
-    return `${amount} ${foodName}`;
 }
 
 type FoodGroup = Record<string, Ingredient[]>;
@@ -142,21 +119,15 @@ function App() {
                         onChange={(v) => setSelectedRecipes(v)}
                         options={allRecipes.map(({ name }) => name)}
                     />
-                    {Object.entries(output).map(([k, v]) => {
+                    {Object.entries(output).map(([category, ingredients]) => {
                         return (
-                            <Stack key={k}>
-                                <Typography variant="h6">{k}</Typography>
+                            <Stack key={category}>
+                                <Typography variant="h6">{category}</Typography>
                                 <List>
-                                    {v.map((f) => (
-                                        <ListItem disablePadding>
-                                            <Checkbox />
-                                            <Typography
-                                                variant="body1"
-                                                key={f.food.name}
-                                            >
-                                                {ingredientLineItem(f)}
-                                            </Typography>
-                                        </ListItem>
+                                    {ingredients.map((ingredient) => (
+                                        <IngredientListItem
+                                            ingredient={ingredient}
+                                        />
                                     ))}
                                 </List>
                             </Stack>
