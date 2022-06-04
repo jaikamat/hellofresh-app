@@ -9,7 +9,7 @@ import {
     Stack,
     Typography,
 } from "@mui/material";
-import MultiSelect from "./components/MultiSelect";
+import MultiSelectDialog from "./components/MultiSelectDialog";
 
 /**
  * This function takes in all our ingredients and sums them
@@ -109,7 +109,7 @@ function App() {
         <Container>
             <Stack spacing={2}>
                 <Typography variant="h5">Select some recipes</Typography>
-                <MultiSelect
+                <MultiSelectDialog
                     value={selectedRecipes}
                     onChange={(v) => setSelectedRecipes(v)}
                     options={allRecipes.map(({ name }) => name)}
