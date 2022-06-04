@@ -2,6 +2,7 @@ import { Recipe, Ingredient, Unit } from "./types";
 import * as recipes from "./recipes";
 import { useState } from "react";
 import {
+    Checkbox,
     Container,
     Link,
     List,
@@ -121,6 +122,7 @@ function App() {
                             <List>
                                 {v.map((f) => (
                                     <ListItem disablePadding>
+                                        <Checkbox />
                                         <Typography
                                             variant="body1"
                                             key={f.food.name}

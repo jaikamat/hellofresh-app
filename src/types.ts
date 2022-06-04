@@ -1,10 +1,10 @@
 export enum FoodCategory {
-    SEASONING = "SEASONING",
-    DAIRY = "DAIRY",
-    PROTEIN = "PROTEIN",
-    PRODUCE = "PRODUCE",
-    GRAIN = "GRAIN",
-    MISC = "MISC",
+    SEASONING = "Seasoning",
+    DAIRY = "Dairy",
+    PROTEIN = "Protein",
+    PRODUCE = "Produce",
+    GRAIN = "Grain",
+    MISC = "Misc",
 }
 
 export enum FoodName {
