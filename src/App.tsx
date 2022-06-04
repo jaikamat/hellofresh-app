@@ -1,8 +1,6 @@
 import { Recipe, Ingredient, Unit } from "./types";
 import * as recipes from "./recipes";
 import { useState } from "react";
-import "./index.css";
-import "./style.css";
 
 /**
  * This function takes in all our ingredients and sums them
