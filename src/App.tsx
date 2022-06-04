@@ -2,8 +2,10 @@ import { Recipe, Ingredient, Unit } from "./types";
 import * as recipes from "./recipes";
 import { useState } from "react";
 import {
+    Box,
     Checkbox,
     Container,
+    Grid,
     Link,
     List,
     ListItem,
@@ -106,68 +108,91 @@ function App() {
 
     const output = groupByCategory(createShoppingList(targetRecipes));
 
-    return (
-        <Container>
-            <Stack spacing={2}>
-                <Typography variant="h5">Select some recipes</Typography>
+    if (selectedRecipes.length === 0) {
+        return (
+            <Grid
+                container
+                direction="column"
+                alignItems="center"
+                justifyContent="center"
+                style={{ height: "100vh" }}
+            >
                 <MultiSelectDialog
                     value={selectedRecipes}
                     onChange={(v) => setSelectedRecipes(v)}
                     options={allRecipes.map(({ name }) => name)}
                 />
-                {Object.entries(output).map(([k, v]) => {
-                    return (
-                        <Stack key={k}>
-                            <Typography variant="h6">{k}</Typography>
-                            <List>
-                                {v.map((f) => (
-                                    <ListItem disablePadding>
-                                        <Checkbox />
-                                        <Typography
-                                            variant="body1"
-                                            key={f.food.name}
-                                        >
-                                            {ingredientLineItem(f)}
-                                        </Typography>
-                                    </ListItem>
-                                ))}
-                            </List>
-                        </Stack>
-                    );
-                })}
-                {targetRecipes.length > 0 && (
-                    <Stack>
-                        <Typography variant="h6">Selected recipes</Typography>
-                        <List>
-                            {targetRecipes.map((tr) => {
-                                const link = tr.directions ? (
-                                    <Link
-                                        href={tr.directions}
-                                        target="_blank"
-                                        rel="noopener"
-                                    >
-                                        {tr.name}
-                                    </Link>
-                                ) : (
-                                    <>{tr.name} (link unavailable)</>
-                                );
+            </Grid>
+        );
+    }
 
-                                if (tr.directions) {
+    return (
+        <Container sx={{ mt: 3, mb: 3 }}>
+            <Grid container justifyContent="center">
+                <Stack>
+                    <MultiSelectDialog
+                        value={selectedRecipes}
+                        onChange={(v) => setSelectedRecipes(v)}
+                        options={allRecipes.map(({ name }) => name)}
+                    />
+                    {Object.entries(output).map(([k, v]) => {
+                        return (
+                            <Stack key={k}>
+                                <Typography variant="h6">{k}</Typography>
+                                <List>
+                                    {v.map((f) => (
+                                        <ListItem disablePadding>
+                                            <Checkbox />
+                                            <Typography
+                                                variant="body1"
+                                                key={f.food.name}
+                                            >
+                                                {ingredientLineItem(f)}
+                                            </Typography>
+                                        </ListItem>
+                                    ))}
+                                </List>
+                            </Stack>
+                        );
+                    })}
+                    {targetRecipes.length > 0 && (
+                        <div>
+                            <Typography variant="h6">
+                                Selected recipes
+                            </Typography>
+                            <List>
+                                {targetRecipes.map((tr) => {
+                                    const link = tr.directions ? (
+                                        <Link
+                                            href={tr.directions}
+                                            target="_blank"
+                                            rel="noopener"
+                                        >
+                                            {tr.name}
+                                        </Link>
+                                    ) : (
+                                        <>{tr.name} (link unavailable)</>
+                                    );
+
+                                    if (tr.directions) {
+                                        return (
+                                            <ListItem disablePadding>
+                                                {link}
+                                            </ListItem>
+                                        );
+                                    }
+
                                     return (
                                         <ListItem disablePadding>
                                             {link}
                                         </ListItem>
                                     );
-                                }
-
-                                return (
-                                    <ListItem disablePadding>{link}</ListItem>
-                                );
-                            })}
-                        </List>
-                    </Stack>
-                )}
-            </Stack>
+                                })}
+                            </List>
+                        </div>
+                    )}
+                </Stack>
+            </Grid>
         </Container>
     );
 }
