@@ -16,12 +16,14 @@ interface MultiSelectDialogProps {
     value: string[];
     onChange: (v: string[]) => void;
     options: string[];
+    label: string;
 }
 
 const MultiSelectDialog: React.FC<MultiSelectDialogProps> = ({
     value,
     onChange,
     options,
+    label,
 }) => {
     const theme = useTheme();
     const matches = useMediaQuery(theme.breakpoints.down("sm"));
@@ -56,7 +58,7 @@ const MultiSelectDialog: React.FC<MultiSelectDialogProps> = ({
                 onClick={() => setDialogOpen(true)}
                 sx={{ width: "inherit" }}
             >
-                Select recipes
+                {label}
             </Button>
             <Dialog open={dialogOpen} fullScreen={matches}>
                 <DialogContent>

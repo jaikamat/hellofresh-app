@@ -117,7 +117,13 @@ function App() {
                 justifyContent="center"
                 style={{ height: "100vh" }}
             >
+                <Box sx={{ pb: 3 }}>
+                    <Typography variant="h6" color="GrayText">
+                        <em>"Great food is simple"</em>
+                    </Typography>
+                </Box>
                 <MultiSelectDialog
+                    label="Select recipes"
                     value={selectedRecipes}
                     onChange={(v) => setSelectedRecipes(v)}
                     options={allRecipes.map(({ name }) => name)}
@@ -131,6 +137,7 @@ function App() {
             <Grid container justifyContent="center">
                 <Stack>
                     <MultiSelectDialog
+                        label="Edit selection"
                         value={selectedRecipes}
                         onChange={(v) => setSelectedRecipes(v)}
                         options={allRecipes.map(({ name }) => name)}
