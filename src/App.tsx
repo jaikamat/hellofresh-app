@@ -1,8 +1,18 @@
-import { Recipe, Ingredient, Unit } from "./types";
+import { Recipe, Ingredient } from "./types";
 import * as recipes from "./recipes";
 import { useState } from "react";
-import "./index.css";
-import "./style.css";
+import {
+    Box,
+    Container,
+    Grid,
+    Link,
+    List,
+    ListItem,
+    Stack,
+    Typography,
+} from "@mui/material";
+import MultiSelectDialog from "./components/MultiSelectDialog";
+import IngredientListItem from "./components/IngredientListItem";
 
 /**
  * This function takes in all our ingredients and sums them
@@ -45,29 +55,6 @@ function createShoppingList(recipes: Recipe[]): Ingredient[] {
     return reduced.sort((a, b) => a.food.name.localeCompare(b.food.name));
 }
 
-/**
- * Finds and replaces hyphens and replaces with strings, and correctly cases word.
- */
-function prettyFoodName(name: string) {
-    const transformed = name
-        .split("_")
-        .map((s) => s.toLowerCase())
-        .join(" ");
-
-    return `${transformed}`;
-}
-
-function ingredientLineItem(ingredient: Ingredient) {
-    const foodName = `${prettyFoodName(ingredient.food.name)}`;
-    const unit =
-        ingredient.unit === Unit.INTEGER
-            ? ""
-            : ` ${ingredient.unit.toLowerCase()}`;
-    const amount = `${ingredient.quantity}${unit}`;
-
-    return `${amount} ${foodName}`;
-}
-
 type FoodGroup = Record<string, Ingredient[]>;
 
 function groupByCategory(ingredients: Ingredient[]): FoodGroup {
@@ -98,81 +85,93 @@ function App() {
 
     const output = groupByCategory(createShoppingList(targetRecipes));
 
+    if (selectedRecipes.length === 0) {
+        return (
+            <Grid
+                container
+                direction="column"
+                alignItems="center"
+                justifyContent="center"
+                style={{ height: "100vh" }}
+            >
+                <Box sx={{ pb: 3 }}>
+                    <Typography variant="h6" color="GrayText">
+                        <em>"Great food is simple"</em>
+                    </Typography>
+                </Box>
+                <MultiSelectDialog
+                    label="Select recipes"
+                    value={selectedRecipes}
+                    onChange={(v) => setSelectedRecipes(v)}
+                    options={allRecipes.map(({ name }) => name)}
+                />
+            </Grid>
+        );
+    }
+
     return (
-        <div className="Container">
-            <div className="ItemContainer">
-                <h3 className="Header">Select some recipes</h3>
-                <div className="SelectContainer">
-                    <select
-                        id="recipes"
-                        className="Select"
-                        multiple
+        <Container sx={{ mt: 3, mb: 3 }}>
+            <Grid container justifyContent="center">
+                <Stack>
+                    <MultiSelectDialog
+                        label="Edit selection"
                         value={selectedRecipes}
-                        onChange={(e) => {
-                            const val = Array.from(
-                                e.target.selectedOptions,
-                                (opt) => opt.value
-                            );
-                            setSelectedRecipes(val);
-                        }}
-                    >
-                        {allRecipes.map((k) => {
-                            return (
-                                <option value={k.name} key={k.name}>
-                                    {k.name}
-                                </option>
-                            );
-                        })}
-                    </select>
-                </div>
-                <div>
-                    <button
-                        className="Button"
-                        onClick={() => setSelectedRecipes([])}
-                    >
-                        Reset
-                    </button>
-                </div>
-            </div>
-            <div className="ItemContainer">
-                {Object.entries(output).map(([k, v]) => {
-                    return (
-                        <div key={k}>
-                            <h3 className="Header">{k}</h3>
-                            <div className="ListContainer">
-                                {v.map((f) => (
-                                    <p key={f.food.name}>
-                                        {ingredientLineItem(f)}
-                                    </p>
-                                ))}
-                            </div>
+                        onChange={(v) => setSelectedRecipes(v)}
+                        options={allRecipes.map(({ name }) => name)}
+                    />
+                    {Object.entries(output).map(([category, ingredients]) => {
+                        return (
+                            <Stack key={category}>
+                                <Typography variant="h6">{category}</Typography>
+                                <List>
+                                    {ingredients.map((ingredient) => (
+                                        <IngredientListItem
+                                            ingredient={ingredient}
+                                        />
+                                    ))}
+                                </List>
+                            </Stack>
+                        );
+                    })}
+                    {targetRecipes.length > 0 && (
+                        <div>
+                            <Typography variant="h6">
+                                Selected recipes
+                            </Typography>
+                            <List>
+                                {targetRecipes.map((tr) => {
+                                    const link = tr.directions ? (
+                                        <Link
+                                            href={tr.directions}
+                                            target="_blank"
+                                            rel="noopener"
+                                        >
+                                            {tr.name}
+                                        </Link>
+                                    ) : (
+                                        <>{tr.name} (link unavailable)</>
+                                    );
+
+                                    if (tr.directions) {
+                                        return (
+                                            <ListItem disablePadding>
+                                                {link}
+                                            </ListItem>
+                                        );
+                                    }
+
+                                    return (
+                                        <ListItem disablePadding>
+                                            {link}
+                                        </ListItem>
+                                    );
+                                })}
+                            </List>
                         </div>
-                    );
-                })}
-            </div>
-            {targetRecipes.length > 0 && (
-                <div className="ItemContainer">
-                    <h3 className="Header">Selected recipes</h3>
-                    <ul>
-                        {targetRecipes.map((tr) => {
-                            const link = tr.directions ? (
-                                <a href={tr.directions} target="_blank">
-                                    {tr.name}
-                                </a>
-                            ) : (
-                                <>{tr.name} (link unavailable)</>
-                            );
-
-                            if (tr.directions) {
-                                return <li>- {link}</li>;
-                            }
-
-                            return <li>- {link}</li>;
-                        })}
-                    </ul>
-                </div>
-            )}
-        </div>
+                    )}
+                </Stack>
+            </Grid>
+        </Container>
     );
 }
 
